@@ -34,6 +34,6 @@
   ```
   上述代码中，com.sdu.didi.psnger是应用的包名，在具体情况下可根据待捕应用的包名进行替换。执行该命令之后，会自动打开包名所指定的应用，并会将使用期间所涉及到的sslkey信息都保存在sslkey.log文件中。
 ## 4. SSL数据解密
-  在停止抓包后，将生成的pcap文件拉取到PC端。使用wireshark打开pcap，然后在`编辑-->首选项-->Protocols-->TLS`中，设置`(Pre)-Master-Secret log filename`为frida生成的log文件，即可以看到解密后的结果。
+  在停止抓包后，将生成的pcap文件拉取到PC端。使用wireshark打开pcap，然后在`编辑-->首选项-->Protocols-->TLS`中，设置`(Pre)-Master-Secret log filename`为frida生成的log文件，即可以看到解密后的结果。<br><br>
 
-
+参考链接：https://codeshare.frida.re/@k0nserv/tls-keylogger/
