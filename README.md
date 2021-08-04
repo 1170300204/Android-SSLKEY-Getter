@@ -7,30 +7,30 @@
   (1) 安装python并配置环境变量，这个网上有很多现有教程，十分简单，在这里就不多加赘述。<br><br>
   (2) 安装frida模块
   ```
-  # pip install frida
+  # pip install frida //PC
   ```
   安装frida-tools模块
   ```
-  # pip install frida-tools
+  # pip install frida-tools //PC
   ```
   下载运行在目标设备上的frida-server段，下载时要根据自己的设备型号选择对应的版本下载（可以通过adb shell 运行cat /proc/cpuinfo查看）。下载地址 https://github.com/frida/frida/releases <br><br>
   (3) 将下载好的文件解压缩并通过and push到手机中的/data/local/tmp目录下，并赋予其777权限。以后在使用frida时，需要先启动该进程
   ```
-  # ./frida-server-15.0.10-android-arm64 &
+  # ./frida-server-15.0.10-android-arm64 & //Android
   ```
   (4) 完成以上配置之后，可以在PC端开一个命令行，并且输入以下命令：
   ```
-  # frida-ps -U
+  # frida-ps -U //PC
   ```
   如果发现成功输出了手机上的进程PID和Name，则证明frida安装成功。
 ## 2. 启动tcpdump开始抓包
   Android环境下的流量捕获很多情况下都会使用tcpdump来完成。具体的方法可以参考 https://blog.csdn.net/u012426959/article/details/70227370/
   ```
-  tcpdump -i any -p -s 0 -w /sdcard/dd/123.pcap //启动tcpdump进程并开始捕包
+  # tcpdump -i any -p -s 0 -w /sdcard/dd/123.pcap //Android 启动tcpdump进程并开始捕包
   ```
 ## 3. 使用frida Hook应用并输出sslkey文件
   ```
-  frida -U -f com.sdu.didi.psnger -l .\sslkeyfilelog.js --no-pause -o sslkey.log
+  # frida -U -f com.sdu.didi.psnger -l .\sslkeyfilelog.js --no-pause -o sslkey.log //PC
   ```
   上述代码中，com.sdu.didi.psnger是应用的包名，在具体情况下可根据待捕应用的包名进行替换。执行该命令之后，会自动打开包名所指定的应用，并会将使用期间所涉及到的sslkey信息都保存在sslkey.log文件中。
 ## 4. SSL数据解密
